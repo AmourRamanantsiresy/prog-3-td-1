@@ -20,7 +20,7 @@ public class AuthorService {
   }
 
   public List<AuthorEntity> getAll() {
-    return repository.findAllOrderByBirth_dateAsc();
+    return repository.findAllByOrderByBirthDateDesc();
   }
 
   public List<AuthorEntity> saveAll(List<AuthorEntity> authors) {

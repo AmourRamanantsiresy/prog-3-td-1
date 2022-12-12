@@ -1,8 +1,8 @@
 create table if not exists author
 (
     id     serial,
-    name    varchar(250),
+    name    varchar,
     birth_date timestamp without time zone,
-    particularity varchar(250),
+    particularity varchar,
     primary key (id)
 );

@@ -18,3 +18,4 @@ insert into book (id, author, title, release_date)
 values (9, 'Kariotta', 'Broken Bridges','2022-02-01');
 insert into book (id, author, title, release_date)
 values (10, 'Alleen', 'Frontier of the Dawn (La frontière de l''aube)','2023-02-01');
+ALTER SEQUENCE book_id_seq RESTART WITH 11;

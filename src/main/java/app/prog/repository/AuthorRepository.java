@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AuthorRepository extends JpaRepository<AuthorEntity, String> {
   public AuthorEntity findByName(String name);
 
-  public List<AuthorEntity> findAllOrderByBirth_dateAsc();
+  public List<AuthorEntity> findAllByOrderByBirthDateDesc();
 }

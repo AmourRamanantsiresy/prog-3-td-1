@@ -19,3 +19,4 @@ insert into author (id, name, particularity, birth_date)
 values (9, 'Percy Lodge', 'Realigned solution-oriented capacity', '2002-03-08');
 insert into author (id, name, particularity, birth_date)
 values (10, 'Julissa Monelli', 'Managed non-volatile protocol', '2003-10-11');
+ALTER SEQUENCE author_id_seq RESTART WITH 11;

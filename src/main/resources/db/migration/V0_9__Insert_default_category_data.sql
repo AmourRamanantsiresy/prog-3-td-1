@@ -1,0 +1,1 @@
+insert into category values (1, 'Funny'), (2, 'Dramatic'), (3, 'Action'), (4, 'Romance');
