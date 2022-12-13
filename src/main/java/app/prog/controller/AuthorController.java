@@ -8,6 +8,7 @@ import app.prog.model.AuthorEntity;
 import app.prog.service.AuthorService;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,7 +48,15 @@ public class AuthorController {
   }
 
   @DeleteMapping("/{authorId}")
-  public AuthorResponse deleteAuthor(@PathVariable int authorId) {
-    return mapper.toRest(service.deleteAuthor(authorId));
+  public ResponseEntity<AuthorResponse> deleteAuthor(
+    @PathVariable int authorId
+  ) {
+    try {
+      return ResponseEntity
+        .ok()
+        .body(mapper.toRest(service.deleteAuthor(authorId)));
+    } catch (Exception e) {
+      return ResponseEntity.notFound().build();
+    }
   }
 }

@@ -8,6 +8,8 @@ import app.prog.model.BookEntity;
 import app.prog.service.BookService;
 import java.util.List;
 import lombok.AllArgsConstructor;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -39,7 +41,15 @@ public class BookController {
   }
 
   @DeleteMapping("/books/{bookId}")
-  public BookResponse deleteBook(@PathVariable Integer bookId) {
-    return mapper.toRest(service.deleteBook(bookId));
+  public ResponseEntity<BookResponse> deleteAuthor(
+    @PathVariable int bookId
+  ) {
+    try {
+      return ResponseEntity
+        .ok()
+        .body(mapper.toRest(service.deleteBook(bookId)));
+    } catch (Exception e) {
+      return ResponseEntity.notFound().build();
+    }
   }
 }
