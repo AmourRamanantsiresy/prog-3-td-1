@@ -66,6 +66,7 @@ public class BookRestMapper {
   }
 
   private List<CategoryEntity> getAllCategory(List<String> categories) {
+    if (categories == null) return null;
     List<CategoryEntity> categoryEntities = new ArrayList<>();
     categories.forEach(e -> categoryEntities.add(categoryService.getByName(e)));
     return categoryEntities;

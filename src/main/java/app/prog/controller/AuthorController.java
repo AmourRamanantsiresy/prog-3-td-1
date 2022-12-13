@@ -8,12 +8,12 @@ import app.prog.model.AuthorEntity;
 import app.prog.service.AuthorService;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,21 +31,19 @@ public class AuthorController {
   }
 
   @PutMapping("")
-  public List<AuthorEntity> updateAll(List<UpdateAuthorResponse> authors) {
-    List<AuthorEntity> authorEntity = authors
-      .stream()
-      .map(mapper::toDomain)
-      .toList();
-    return service.saveAll(authorEntity);
+  public List<AuthorResponse> updateAll(
+    @RequestBody List<UpdateAuthorResponse> authors
+  ) {
+    List<AuthorEntity> domain = authors.stream().map(mapper::toDomain).toList();
+    return service.saveAll(domain).stream().map(mapper::toRest).toList();
   }
 
   @PostMapping("")
-  public List<AuthorEntity> saveAll(List<CreateAuthorResponse> authors) {
-    List<AuthorEntity> authorEntity = authors
-      .stream()
-      .map(mapper::toDomain)
-      .toList();
-    return service.saveAll(authorEntity);
+  public List<AuthorResponse> saveAll(
+    @RequestBody List<CreateAuthorResponse> authors
+  ) {
+    List<AuthorEntity> domain = authors.stream().map(mapper::toDomain).toList();
+    return service.saveAll(domain).stream().map(mapper::toRest).toList();
   }
 
   @DeleteMapping("/{authorId}")
